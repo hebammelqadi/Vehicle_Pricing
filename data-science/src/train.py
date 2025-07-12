@@ -11,7 +11,6 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 import mlflow
 import mlflow.sklearn
-import joblib
 import os
 
 def parse_args():
@@ -69,10 +68,9 @@ def main(args):
     mlflow.log_metric("MSE", float(mse))
     
     # save the trained model to the specified output path
-    os.makedirs(args.model_output, exist_ok=True) 
-    model_path = os.path.join(args.model_output, "model.pkl")
-    joblib.dump(model, model_path)
-    print(f"Model saved to: {model_path}")
+    print(f"Saving model to: {args.model_output}")
+    mlflow.sklearn.save_model(model, path=args.model_output)
+    
 
 if __name__ == "__main__":
     
