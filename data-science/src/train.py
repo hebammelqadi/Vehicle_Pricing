@@ -11,6 +11,8 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 import mlflow
 import mlflow.sklearn
+import joblib
+import os
 
 def parse_args():
     '''Parse input arguments'''
@@ -64,8 +66,13 @@ def main(args):
     # Step 7: Log the MSE metric in MLflow for model evaluation, and save the trained model to the specified output path.  
     mse = mean_squared_error(y_test, yhat_test)
     print(f'Mean Square error of RandomForest Regressor on test set: {mse:.2f}')
-    # Logging the accuracy score as a metric
     mlflow.log_metric("MSE", float(mse))
+    
+    # save the trained model to the specified output path
+    os.makedirs(args.model_output, exist_ok=True) 
+    model_path = os.path.join(args.model_output, "model.pkl")
+    joblib.dump(model, model_path)
+    print(f"Model saved to: {model_path}")
 
 if __name__ == "__main__":
     
