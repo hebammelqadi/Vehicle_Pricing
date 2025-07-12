@@ -9,7 +9,7 @@ inputs:
     type: uri_folder  # Specify the type for test_data
   n_estimators:
     type: integer  
-    default: 100 
+    default: 50 
   max_depth:
     type: integer  # Specify the type for max_depth
     default: 5  # Provide the default value for max_depth
