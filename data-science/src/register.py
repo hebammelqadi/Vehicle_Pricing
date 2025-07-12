@@ -43,13 +43,13 @@ def main(args):
     model_version = mlflow_model.version
     
     # Step 4: Write model registration details, including model name and version, into a JSON file in the specified output path.  
-    os.makedirs(args.model_info_output_path, exist_ok=True)
-    output_path = os.path.join(args.model_info_output_path, "model_info.json")
-    
+    output_path = args.model_info_output_path
+    output_dir = os.path.dirname(output_path)
+    os.makedirs(output_dir, exist_ok=True)
+
     model_info = {"id": f"{args.model_name}:{model_version}"}
     with open(output_path, "w") as of:
-        json.dump(model_info, of)
-    
+    json.dump(model_info, of)
     print(f"Model info written to {output_path}")
 
 if __name__ == "__main__":
