@@ -26,7 +26,11 @@ def parse_args():
 
 def main(args):  # Write the function name for the main data preparation logic
     '''Read, preprocess, split, and save datasets'''
-
+    print(f"Raw data path: {args.raw_data}")
+    print(f"Train dataset output path: {args.train_data}")
+    print(f"Test dataset path: {args.test_data}")
+    print(f"Test-train ratio: {args.test_train_ratio}")
+    
     # Reading Data
     df = pd.read_csv(args.raw_data)
 
