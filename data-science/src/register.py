@@ -46,11 +46,13 @@ def main(args):
     output_path = args.model_info_output_path
     output_dir = os.path.dirname(output_path)
     os.makedirs(output_dir, exist_ok=True)
-
+    
     model_info = {"id": f"{args.model_name}:{model_version}"}
     with open(output_path, "w") as of:
-    json.dump(model_info, of)
+        json.dump(model_info, of)
+
     print(f"Model info written to {output_path}")
+
 
 if __name__ == "__main__":
     
